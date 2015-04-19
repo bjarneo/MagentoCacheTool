@@ -57,6 +57,10 @@ class Mage_Shell_Cache extends Mage_Shell_Abstract
         try {
             $this->_getApp()->getCache()->clean();
 
+            $this->_getApp()->getCacheInstance()->flush();
+
+            $this->_dispatchEvent('adminhtml_cache_flush_all');
+
             echo 'Cache cleared ' . PHP_EOL;
         } catch (Mage_Core_Exception $e) {
             echo $e->getMessage();
@@ -114,6 +118,24 @@ class Mage_Shell_Cache extends Mage_Shell_Abstract
         }
     }
 
+    /**
+     * Clear system cache
+     *
+     */
+    private function _clearSystemCache()
+    {
+        try {
+            $this->_getApp()->cleanCache();
+
+            $this->_dispatchEvent('adminhtml_cache_flush_system');
+
+            echo 'System cache cleared ' . PHP_EOL;
+        }  catch (Mage_Core_Exception $e) {
+            echo $e->getMessage();
+        }
+    }
+
+
     private function _clearAll()
     {
         $this->_clearCache();
@@ -123,6 +145,8 @@ class Mage_Shell_Cache extends Mage_Shell_Abstract
         $this->_clearAssetsCache();
 
         $this->_clearSwatchesCache();
+
+        $this->_clearSystemCache();
     }
 
     /**
@@ -139,6 +163,8 @@ class Mage_Shell_Cache extends Mage_Shell_Abstract
             $this->_clearAssetsCache();
         } else if ($this->getArg('clear-swatches-cache')) {
             $this->_clearSwatchesCache();
+        } else if ($this->getArg('clear-system-cache')) {
+            $this->_clearSystemCache();
         } else if ($this->getArg('clear-all')) {
             $this->_clearAll();
         } else {
@@ -160,6 +186,7 @@ Usage:  php cache.php -- [options]
   --clear-image-cache           Clear image cache
   --clear-assets                Clear JavaScript and CSS cache
   --clear-swatches-cache        Clear swatches cache
+  --clear-system-cache        Clear system cache
   --clear-all                   Clear all cache
 
   --help                        This help
