@@ -1,6 +1,6 @@
 <?php
 /**
- * Clear cache cli style
+ * Clear cache CLI style
  *
  *
  * @category    Mage
