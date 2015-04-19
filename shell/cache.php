@@ -57,7 +57,7 @@ class Mage_Shell_Cache extends Mage_Shell_Abstract
         try {
             $this->_getApp()->getCacheInstance()->flush();
 
-            $this->_dispatchEvent('adminhtml_cache_flush_all');
+            $this->_dispatchEvent('shell_cache_flush_all_after');
 
             echo 'Cache cleared ' . PHP_EOL;
         } catch (Mage_Core_Exception $e) {
@@ -74,7 +74,7 @@ class Mage_Shell_Cache extends Mage_Shell_Abstract
         try {
             $this->_getProductImageModel()->clearCache();
 
-            $this->_dispatchEvent('clean_catalog_images_cache_after');
+            $this->_dispatchEvent('shell_clean_catalog_images_cache_after');
 
             echo 'Image cache cleared ' . PHP_EOL;
         } catch (Mage_Core_Exception $e) {
@@ -91,7 +91,7 @@ class Mage_Shell_Cache extends Mage_Shell_Abstract
         try {
             Mage::getDesign()->cleanMergedJsCss();
 
-            $this->_dispatchEvent('clean_media_cache_after');
+            $this->_dispatchEvent('shell_clean_media_cache_after');
 
             echo 'JavaScript and CSS cache cleared ' . PHP_EOL;
         } catch (Mage_Core_Exception $e) {
@@ -108,7 +108,7 @@ class Mage_Shell_Cache extends Mage_Shell_Abstract
         try {
             Mage::helper('configurableswatches/productimg')->clearSwatchesCache();
 
-            $this->_dispatchEvent('clean_configurable_swatches_cache_after');
+            $this->_dispatchEvent('shell_configurable_swatches_cache_after');
 
             echo 'Swatches cache cleared ' . PHP_EOL;
         }  catch (Mage_Core_Exception $e) {
@@ -125,7 +125,7 @@ class Mage_Shell_Cache extends Mage_Shell_Abstract
         try {
             $this->_getApp()->cleanCache();
 
-            $this->_dispatchEvent('adminhtml_cache_flush_system');
+            $this->_dispatchEvent('shell_cache_flush_system_after');
 
             echo 'System cache cleared ' . PHP_EOL;
         }  catch (Mage_Core_Exception $e) {
@@ -145,6 +145,8 @@ class Mage_Shell_Cache extends Mage_Shell_Abstract
         $this->_clearSwatchesCache();
 
         $this->_clearSystemCache();
+
+        $this->_dispatchEvent('shell_clear_cache_all_after');
     }
 
     /**
