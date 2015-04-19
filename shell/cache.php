@@ -85,6 +85,17 @@ class Mage_Shell_Cache extends Mage_Shell_Abstract
         }
     }
 
+    private function _clearSwatchesCache()
+    {
+        try {
+            Mage::helper('configurableswatches/productimg')->clearSwatchesCache();
+
+            echo 'Swatches cache cleared ' . PHP_EOL;
+        }  catch (Mage_Core_Exception $e) {
+            echo $e->getMessage();
+        }
+    }
+
     private function _clearAll()
     {
         $this->_clearCache();
@@ -92,6 +103,8 @@ class Mage_Shell_Cache extends Mage_Shell_Abstract
         $this->_clearImageCache();
 
         $this->_clearAssetsCache();
+
+        $this->_clearSwatchesCache();
     }
 
     /**
@@ -106,6 +119,8 @@ class Mage_Shell_Cache extends Mage_Shell_Abstract
             $this->_clearImageCache();
         } else if ($this->getArg('clear-assets')) {
             $this->_clearAssetsCache();
+        } else if ($this->getArg('clear-swatches-cache')) {
+            $this->_clearSwatchesCache();
         } else if ($this->getArg('clear-all')) {
             $this->_clearAll();
         } else {
@@ -126,6 +141,7 @@ Usage:  php cache.php -- [options]
   --clear-cache                 Clear cache
   --clear-image-cache           Clear image cache
   --clear-assets                Clear JavaScript and CSS cache
+  --clear-swatches-cache        Clear swatches cache
   --clear-all                   Clear all cache
 
   --help                        This help
