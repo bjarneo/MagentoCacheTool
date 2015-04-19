@@ -49,9 +49,9 @@ class Mage_Shell_Cache extends Mage_Shell_Abstract
         try {
             $this->_getApp()->getCache()->clean();
 
-            printf("Cache cleared\r\n");
+            echo 'Cache cleared ' . PHP_EOL;
         } catch (Mage_Core_Exception $e) {
-            printf($e->getMessage());
+            echo $e->getMessage();
         }
     }
 
@@ -64,9 +64,9 @@ class Mage_Shell_Cache extends Mage_Shell_Abstract
         try {
             $this->_getProductImageModel()->clearCache();
 
-            printf("Image cache cleared\r\n");
+            echo 'Image cache cleared ' . PHP_EOL;
         } catch (Mage_Core_Exception $e) {
-            printf($e->getMessage());
+            echo $e->getMessage();
         }
     }
 
@@ -79,9 +79,9 @@ class Mage_Shell_Cache extends Mage_Shell_Abstract
         try {
             Mage::getDesign()->cleanMergedJsCss();
 
-            printf("JavaScript and CSS cache cleared\r\n");
+            echo 'JavaScript and CSS cache cleared ' . PHP_EOL;
         } catch (Mage_Core_Exception $e) {
-            printf($e->getMessage());
+            echo $e->getMessage();
         }
     }
 
@@ -109,7 +109,7 @@ class Mage_Shell_Cache extends Mage_Shell_Abstract
         } else if ($this->getArg('clear-all')) {
             $this->_clearAll();
         } else {
-            echo $this->usageHelp();
+            echo $this->_usageHelp();
         }
     }
 
@@ -118,7 +118,7 @@ class Mage_Shell_Cache extends Mage_Shell_Abstract
      * Retrieve Usage Help Message
      *
      */
-    public function usageHelp()
+    private function _usageHelp()
     {
         return <<<USAGE
 Usage:  php cache.php -- [options]
