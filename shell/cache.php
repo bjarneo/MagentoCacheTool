@@ -52,11 +52,9 @@ class Mage_Shell_Cache extends Mage_Shell_Abstract
      * Clear cache
      *
      */
-    private function _clearCache()
+    private function _clearStorageCache()
     {
         try {
-            $this->_getApp()->getCache()->clean();
-
             $this->_getApp()->getCacheInstance()->flush();
 
             $this->_dispatchEvent('adminhtml_cache_flush_all');
@@ -138,7 +136,7 @@ class Mage_Shell_Cache extends Mage_Shell_Abstract
 
     private function _clearAll()
     {
-        $this->_clearCache();
+        $this->_clearStorageCache();
 
         $this->_clearImageCache();
 
@@ -155,15 +153,15 @@ class Mage_Shell_Cache extends Mage_Shell_Abstract
      */
     public function run()
     {
-        if ($this->getArg('clear-cache')) {
-            $this->_clearCache();
-        } else if ($this->getArg('clear-image-cache')) {
+        if ($this->getArg('clear-storage')) {
+            $this->_clearStorageCache();
+        } else if ($this->getArg('clear-image')) {
             $this->_clearImageCache();
         } else if ($this->getArg('clear-assets')) {
             $this->_clearAssetsCache();
-        } else if ($this->getArg('clear-swatches-cache')) {
+        } else if ($this->getArg('clear-swatches')) {
             $this->_clearSwatchesCache();
-        } else if ($this->getArg('clear-system-cache')) {
+        } else if ($this->getArg('clear-system')) {
             $this->_clearSystemCache();
         } else if ($this->getArg('clear-all')) {
             $this->_clearAll();
@@ -182,11 +180,11 @@ class Mage_Shell_Cache extends Mage_Shell_Abstract
         return <<<USAGE
 Usage:  php cache.php -- [options]
 
-  --clear-cache                 Clear cache
-  --clear-image-cache           Clear image cache
+  --clear-storage               Clear storage cache
+  --clear-image                 Clear image cache
   --clear-assets                Clear JavaScript and CSS cache
-  --clear-swatches-cache        Clear swatches cache
-  --clear-system-cache          Clear system cache
+  --clear-swatches              Clear swatches cache
+  --clear-system                Clear system cache
   --clear-all                   Clear all cache
 
   --help                        This help
