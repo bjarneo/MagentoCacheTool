@@ -186,7 +186,7 @@ Usage:  php cache.php -- [options]
   --clear-image-cache           Clear image cache
   --clear-assets                Clear JavaScript and CSS cache
   --clear-swatches-cache        Clear swatches cache
-  --clear-system-cache        Clear system cache
+  --clear-system-cache          Clear system cache
   --clear-all                   Clear all cache
 
   --help                        This help
