@@ -31,7 +31,7 @@ class Mage_Shell_Cache extends Mage_Shell_Abstract
     }
 
     /**
-     * Get Mage app
+     * Get product image model
      *
      */
     private function _getProductImageModel()
