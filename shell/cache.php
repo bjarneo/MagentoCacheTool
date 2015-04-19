@@ -39,6 +39,14 @@ class Mage_Shell_Cache extends Mage_Shell_Abstract
         return Mage::getModel('catalog/product_image');
     }
 
+    /**
+     * Dispatch event
+     *
+     */
+    private function _dispatchEvent($event)
+    {
+        Mage::dispatchEvent($event);
+    }
 
     /**
      * Clear cache
@@ -64,6 +72,8 @@ class Mage_Shell_Cache extends Mage_Shell_Abstract
         try {
             $this->_getProductImageModel()->clearCache();
 
+            $this->_dispatchEvent('clean_catalog_images_cache_after');
+
             echo 'Image cache cleared ' . PHP_EOL;
         } catch (Mage_Core_Exception $e) {
             echo $e->getMessage();
@@ -79,16 +89,24 @@ class Mage_Shell_Cache extends Mage_Shell_Abstract
         try {
             Mage::getDesign()->cleanMergedJsCss();
 
+            $this->_dispatchEvent('clean_media_cache_after');
+
             echo 'JavaScript and CSS cache cleared ' . PHP_EOL;
         } catch (Mage_Core_Exception $e) {
             echo $e->getMessage();
         }
     }
 
+    /**
+     * Clear swatches images cache
+     *
+     */
     private function _clearSwatchesCache()
     {
         try {
             Mage::helper('configurableswatches/productimg')->clearSwatchesCache();
+
+            $this->_dispatchEvent('clean_configurable_swatches_cache_after');
 
             echo 'Swatches cache cleared ' . PHP_EOL;
         }  catch (Mage_Core_Exception $e) {
