@@ -1,5 +1,5 @@
 # MagentoCacheTool
-Clear Magento Cache in CLI
+Clear Magento Cache in CLI style
 
 ## Commands
 Usage:  php cache.php -- [options]
