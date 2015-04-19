@@ -14,11 +14,11 @@ require_once 'abstract.php';
 /**
  * Magento Cache Shell Script
  *
- * @category    Mage
+ * @category    BjarneoCodes
  * @package     Mage_Shell
  * @author      Bjarne Oeverli <bjarne.oeverli@gmail.com>
  */
-class Mage_Shell_Cache extends Mage_Shell_Abstract
+class BjarneoCodes_Shell_Cache extends Mage_Shell_Abstract
 {
 
     /**
@@ -195,5 +195,5 @@ USAGE;
     }
 }
 
-$shell = new Mage_Shell_Cache();
+$shell = new BjarneoCodes_Shell_Cache();
 $shell->run();
