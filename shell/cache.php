@@ -22,6 +22,29 @@ class Mage_Shell_Cache extends Mage_Shell_Abstract
 {
 
     /**
+     * Run script
+     *
+     */
+    public function run()
+    {
+        if ($this->getArg('clear-storage')) {
+            $this->_clearStorageCache();
+        } else if ($this->getArg('clear-image')) {
+            $this->_clearImageCache();
+        } else if ($this->getArg('clear-assets')) {
+            $this->_clearAssetsCache();
+        } else if ($this->getArg('clear-swatches')) {
+            $this->_clearSwatchesCache();
+        } else if ($this->getArg('clear-system')) {
+            $this->_clearSystemCache();
+        } else if ($this->getArg('clear-all')) {
+            $this->_clearAll();
+        } else {
+            echo $this->_usageHelp();
+        }
+    }
+
+    /**
      * Get Mage app
      *
      */
@@ -147,29 +170,6 @@ class Mage_Shell_Cache extends Mage_Shell_Abstract
         $this->_clearSystemCache();
 
         $this->_dispatchEvent('shell_clear_cache_all_after');
-    }
-
-    /**
-     * Run script
-     *
-     */
-    public function run()
-    {
-        if ($this->getArg('clear-storage')) {
-            $this->_clearStorageCache();
-        } else if ($this->getArg('clear-image')) {
-            $this->_clearImageCache();
-        } else if ($this->getArg('clear-assets')) {
-            $this->_clearAssetsCache();
-        } else if ($this->getArg('clear-swatches')) {
-            $this->_clearSwatchesCache();
-        } else if ($this->getArg('clear-system')) {
-            $this->_clearSystemCache();
-        } else if ($this->getArg('clear-all')) {
-            $this->_clearAll();
-        } else {
-            echo $this->_usageHelp();
-        }
     }
 
 
