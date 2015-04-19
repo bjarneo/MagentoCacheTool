@@ -169,7 +169,7 @@ class Mage_Shell_Cache extends Mage_Shell_Abstract
 
         $this->_clearSystemCache();
 
-        $this->_dispatchEvent('shell_clear_cache_all_after');
+        $this->_dispatchEvent('shell_clear_all_cache_after');
     }
 
 
