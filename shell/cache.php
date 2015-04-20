@@ -84,7 +84,7 @@ class BjarneoCodes_Shell_Cache extends Mage_Shell_Abstract
 
             echo 'Cache cleared ' . PHP_EOL;
         } catch (Mage_Core_Exception $e) {
-            echo $e->getMessage();
+            throw $e;
         }
     }
 
@@ -101,7 +101,7 @@ class BjarneoCodes_Shell_Cache extends Mage_Shell_Abstract
 
             echo 'Image cache cleared ' . PHP_EOL;
         } catch (Mage_Core_Exception $e) {
-            echo $e->getMessage();
+            throw $e;
         }
     }
 
@@ -118,7 +118,7 @@ class BjarneoCodes_Shell_Cache extends Mage_Shell_Abstract
 
             echo 'JavaScript and CSS cache cleared ' . PHP_EOL;
         } catch (Mage_Core_Exception $e) {
-            echo $e->getMessage();
+            throw $e;
         }
     }
 
@@ -135,7 +135,7 @@ class BjarneoCodes_Shell_Cache extends Mage_Shell_Abstract
 
             echo 'Swatches cache cleared ' . PHP_EOL;
         }  catch (Mage_Core_Exception $e) {
-            echo $e->getMessage();
+            throw $e;
         }
     }
 
@@ -152,7 +152,7 @@ class BjarneoCodes_Shell_Cache extends Mage_Shell_Abstract
 
             echo 'System cache cleared ' . PHP_EOL;
         }  catch (Mage_Core_Exception $e) {
-            echo $e->getMessage();
+            throw $e;
         }
     }
 
