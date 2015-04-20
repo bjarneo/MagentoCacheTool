@@ -40,7 +40,7 @@ class BjarneoCodes_Shell_Cache extends Mage_Shell_Abstract
         } else if ($this->getArg('clear-all')) {
             $this->_clearAll();
         } else {
-            echo $this->_usageHelp();
+            echo $this->usageHelp();
         }
     }
 
@@ -177,7 +177,7 @@ class BjarneoCodes_Shell_Cache extends Mage_Shell_Abstract
      * Retrieve Usage Help Message
      *
      */
-    private function _usageHelp()
+    public function usageHelp()
     {
         return <<<USAGE
 Usage:  php cache.php -- [options]
