@@ -155,7 +155,7 @@ class BjarneoCodes_Shell_Cache extends Mage_Shell_Abstract
             $this->_dispatchEvent('shell_cache_flush_system_after');
 
             echo 'System cache cleared ' . PHP_EOL;
-        }  catch (Mage_Core_Exception $e) {
+        } catch (Mage_Core_Exception $e) {
             throw $e;
         }
     }
@@ -176,14 +176,22 @@ class BjarneoCodes_Shell_Cache extends Mage_Shell_Abstract
         if (isset($types[$type])) {
             $types[$type] = $state;
 
-            $this->_getApp()->saveUseCache($types);
+            try {
+                $this->_getApp()->saveUseCache($types);
 
-            return true;
+                return true;
+            } catch(Mage_Core_Exception $e) {
+                throw $e;
+            }
         }
 
         return false;
     }
 
+    /**
+     * Clear all
+     *
+     */
     private function _clearAll()
     {
         $this->_clearStorageCache();
