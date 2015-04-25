@@ -10,6 +10,10 @@ Usage:  php cache.php -- [options]
   --clear-swatches              Clear swatches cache
   --clear-system                Clear system cache
   --clear-all                   Clear all cache
+  --enable-type  <type>         Enable cache type
+  --disable-type <type>         Disable cache type
+  --enable-types                Enable cache types
+  --disable-types               Disable cache types
 
   --help                        This help
 
