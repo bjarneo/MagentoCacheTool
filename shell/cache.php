@@ -37,6 +37,10 @@ class BjarneoCodes_Shell_Cache extends Mage_Shell_Abstract
             $this->_clearSwatchesCache();
         } else if ($this->getArg('clear-system')) {
             $this->_clearSystemCache();
+        } else if ($this->getArg('enable-type')) {
+            $this->_toggleType($this->getArg('enable-type'));
+        } else if ($this->getArg('disable-type')) {
+            $this->_toggleType($this->getArg('disable-type'), 0);
         } else if ($this->getArg('clear-all')) {
             $this->_clearAll();
         } else {
@@ -156,6 +160,29 @@ class BjarneoCodes_Shell_Cache extends Mage_Shell_Abstract
         }
     }
 
+    /**
+     * Toggle cache type
+     *
+     * @param string $type cache type
+     * @param int $state the current state you want to put it in
+     * @return bool
+     */
+    private function _toggleType($type = '', $state = 1)
+    {
+        $types = $this->_getApp()->useCache();
+
+        $type = strtolower($type);
+
+        if (isset($types[$type])) {
+            $types[$type] = $state;
+
+            $this->_getApp()->saveUseCache($types);
+
+            return true;
+        }
+
+        return false;
+    }
 
     private function _clearAll()
     {
