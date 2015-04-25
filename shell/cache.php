@@ -188,6 +188,8 @@ class BjarneoCodes_Shell_Cache extends Mage_Shell_Abstract
                     [ 'state' => (bool) $state ]
                 );
 
+                printf('Cache type %s was toggled %s', $type, $state ? 'on' : 'off');
+
                 return true;
             } catch(Mage_Core_Exception $e) {
                 throw $e;
@@ -216,6 +218,8 @@ class BjarneoCodes_Shell_Cache extends Mage_Shell_Abstract
                 'shell_toggle_all_cache_types',
                 [ 'state' => (bool) $state ]
             );
+
+            printf('All cache types was toggled %s', $state ? 'on' : 'off');
         } catch(Mage_Core_Exception $e) {
             throw $e;
         }
