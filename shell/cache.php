@@ -203,6 +203,7 @@ class BjarneoCodes_Shell_Cache extends Mage_Shell_Abstract
     /**
      * Retrieve Usage Help Message
      *
+     * @return string heredoc
      */
     public function usageHelp()
     {
@@ -215,6 +216,8 @@ Usage:  php cache.php -- [options]
   --clear-swatches              Clear swatches cache
   --clear-system                Clear system cache
   --clear-all                   Clear all cache
+  --enable-type                 Enable cache type
+  --disable-type                Disable cache type
 
   --help                        This help
 
