@@ -41,6 +41,10 @@ class BjarneoCodes_Shell_Cache extends Mage_Shell_Abstract
             $this->_toggleType($this->getArg('enable-type'));
         } else if ($this->getArg('disable-type')) {
             $this->_toggleType($this->getArg('disable-type'), 0);
+        } else if ($this->getArg('enable-types')) {
+            $this->_toggleAllTypes(1);
+        } else if ($this->getArg('disable-types')) {
+            $this->_toggleAllTypes(0);
         } else if ($this->getArg('clear-all')) {
             $this->_clearAll();
         } else {
@@ -194,6 +198,30 @@ class BjarneoCodes_Shell_Cache extends Mage_Shell_Abstract
     }
 
     /**
+     * Toggle all types
+     *
+     * @param int $state on / off
+     */
+    private function _toggleAllTypes($state = 1)
+    {
+        $types = array_fill_keys(
+            array_keys($this->_getApp()->useCache()),
+            $state
+        );
+
+        try {
+            $this->_getApp()->saveUseCache($types);
+
+            $this->_dispatchEvent(
+                'shell_toggle_all_cache_types',
+                [ 'state' => (bool) $state ]
+            );
+        } catch(Mage_Core_Exception $e) {
+            throw $e;
+        }
+    }
+
+    /**
      * Clear all
      *
      */
@@ -229,8 +257,10 @@ Usage:  php cache.php -- [options]
   --clear-swatches              Clear swatches cache
   --clear-system                Clear system cache
   --clear-all                   Clear all cache
-  --enable-type                 Enable cache type
-  --disable-type                Disable cache type
+  --enable-type  <type>         Enable cache type
+  --disable-type <type>         Disable cache type
+  --enable-types                Enable cache types
+  --disable-types               Disable cache types
 
   --help                        This help
 
