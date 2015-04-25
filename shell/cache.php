@@ -70,9 +70,9 @@ class BjarneoCodes_Shell_Cache extends Mage_Shell_Abstract
      * Dispatch event
      *
      */
-    private function _dispatchEvent($event)
+    private function _dispatchEvent($event, $data = [])
     {
-        Mage::dispatchEvent($event);
+        Mage::dispatchEvent($event, $data);
     }
 
     /**
@@ -178,6 +178,11 @@ class BjarneoCodes_Shell_Cache extends Mage_Shell_Abstract
 
             try {
                 $this->_getApp()->saveUseCache($types);
+
+                $this->_dispatchEvent(
+                    sprintf('shell_toggle_cache_type_%s', $type),
+                    [ 'state' => (bool) $state ]
+                );
 
                 return true;
             } catch(Mage_Core_Exception $e) {
