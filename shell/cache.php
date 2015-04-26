@@ -82,6 +82,7 @@ class BjarneoCodes_Shell_Cache extends Mage_Shell_Abstract
     /**
      * Clear cache
      *
+     * @throws Mage_Core_Exception
      */
     private function _clearStorageCache()
     {
@@ -99,6 +100,7 @@ class BjarneoCodes_Shell_Cache extends Mage_Shell_Abstract
     /**
      * Clear image cache
      *
+     * @throws Mage_Core_Exception
      */
     private function _clearImageCache()
     {
@@ -116,6 +118,7 @@ class BjarneoCodes_Shell_Cache extends Mage_Shell_Abstract
     /**
      * Clear assets cache
      *
+     * @throws Mage_Core_Exception
      */
     private function _clearAssetsCache()
     {
@@ -133,6 +136,7 @@ class BjarneoCodes_Shell_Cache extends Mage_Shell_Abstract
     /**
      * Clear swatches images cache
      *
+     * @throws Mage_Core_Exception
      */
     private function _clearSwatchesCache()
     {
@@ -150,6 +154,7 @@ class BjarneoCodes_Shell_Cache extends Mage_Shell_Abstract
     /**
      * Clear system cache
      *
+     * @throws Mage_Core_Exception
      */
     private function _clearSystemCache()
     {
@@ -169,6 +174,7 @@ class BjarneoCodes_Shell_Cache extends Mage_Shell_Abstract
      *
      * @param string $type cache type
      * @param int $state the current state you want to put it in
+     * @throws Mage_Core_Exception
      * @return bool
      */
     private function _toggleType($type = '', $state = 1)
@@ -274,3 +280,4 @@ USAGE;
 
 $shell = new BjarneoCodes_Shell_Cache();
 $shell->run();
+R
