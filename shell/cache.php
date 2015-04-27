@@ -280,4 +280,3 @@ USAGE;
 
 $shell = new BjarneoCodes_Shell_Cache();
 $shell->run();
-R
